@@ -1,0 +1,605 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+</style><title>线下课程 - 计算机</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='第1章-信息技术概述'><span>第1章 信息技术概述</span></h1><h2 id='11-信息与信息技术'><span>1.1 信息与信息技术</span></h2><h3 id='111-信息与信息处理'><span>1.1.1 信息与信息处理</span></h3><h4 id='什么是信息'><span>什么是信息</span></h4><blockquote><p><span>控制论创始人维纳（N. Wiener）曾经说过：</span></p></blockquote><p><span>信息就是信息，它既不是物质也不是能量。</span></p><p><span>信息是客观世界中各事物运动状态和变化内容的反映，是认识主体对客观事物状态和变化的感知。</span></p><h4 id='客观世界的三大要素'><span>客观世界的三大要素</span></h4><p><mark><span>信息</span></mark><span>、</span><mark><span>物质</span></mark><span>与</span><mark><span>能量</span></mark><span>是客观世界的三大构成要素。</span></p><blockquote><p><span>没有物质，什么也不存在；</span>
+<span>没有能量，什么也不会发生；</span>
+<span>没有信息，任何事物都没有意义。</span></p></blockquote><h4 id='信息的性质'><span>信息的性质</span></h4><ul><li><mark><span>普遍性</span></mark><span>：</span><span style="color:grey;"><span>凡有事物的地方，就必然存在信息，信息广泛存在</span></span></li><li><mark><span>动态性</span></mark><span>：</span><span style="color:grey;"><span>事物是在不断运动变化之中的，信息也必然随之而改变</span></span></li><li><mark><span>时效性</span></mark><span>：</span><span style="color:grey;"><span>由于信息的动态性，细腻些的使用价值会随着时间而衰减</span></span></li><li><mark><span>多样性</span></mark><span>：</span><span style="color:grey;"><span>语言、文字、声音、图片等（通称为信息的载体或媒体）都是信息的表现形式</span></span></li><li><mark><span>可传递性</span></mark><span>：</span><span style="color:grey;"><span>信息可通过媒体在人-人，人-物，物-物之间传递，信息传递才能发挥信息的作用</span></span></li><li><mark><span>可共享性</span></mark><span>：</span><span style="color:grey;"><span>信息与物质、能量不同，同一信息在同一时间可被多个主体共有，信息能无限地进行复制和传递，不因使用而有损耗</span></span></li><li><mark><span>快速增长性</span></mark><span>：</span><span style="color:grey;"><span>随着社会的发展，信息在快速增长！（信息爆炸）</span></span></li></ul><h4 id='信息处理的行为和活动'><span>信息处理的行为和活动</span></h4><p><span>信息处理指的是与下列内容相关的行为和活动：</span></p><ul><li><mark><span>信息的收集</span></mark><span>，例如信息的感知、测量、获取、输入等。</span></li><li><mark><span>信息的加工</span></mark><span>，例如分类、计算、分析、综合、转换、检索、管理等。</span></li><li><mark><span>信息的存储</span></mark><span>，例如书写、摄影、录音、录像等。</span></li><li><mark><span>信息的传递</span></mark><span>，例如邮寄、出版、电话、广播电视、短信、微信、博客等。</span></li><li><mark><span>信息的施用</span></mark><span>，例如控制、显示、导航、机器人等。</span></li></ul><h3 id='112-信息技术和信息产业'><span>1.1.2 信息技术和信息产业</span></h3><h4 id='信息技术'><span>信息技术</span></h4><p><span>信息技术（information technology，简称IT）指的是用来扩展人们信息器官功能、协助人们更有效地进行信息处理的一类技术。</span></p><p><span>人们的信息器官主要有</span><mark><span>感觉器官</span></mark><span>、</span><mark><span>神经网络</span></mark><span>、</span><mark><span>大脑</span></mark><span>及</span><mark><span>效应器官</span></mark><span>，它们分别用于</span><mark><span>获取信息</span></mark><span>、</span><mark><span>传递信息</span></mark><span>、</span><mark><span>加工和存储信息</span></mark><span>，以及</span><mark><span>施用信息使其产生实际效用</span></mark><span>。</span></p><figure><table><thead><tr><th><span>信息器官</span></th><th><span>信息处理功能</span></th></tr></thead><tbody><tr><td><span>感觉器官</span></td><td><span>获取信息</span></td></tr><tr><td><span>神经网络</span></td><td><span>传递信息</span></td></tr><tr><td><span>大脑</span></td><td><span>加工和存储信息</span></td></tr><tr><td><span>效应器官</span></td><td><span>施用信息使其产生实际效用</span></td></tr></tbody></table></figure><h4 id='基本的信息技术'><span>基本的信息技术</span></h4><p><span>基本的信息技术包括：</span></p><ul><li><span>扩展感觉器官功能的感测（获取）与识别技术。</span></li><li><span>扩展神经系统功能的通信技术。</span></li><li><span>扩展大脑功能的计算（处理）与存储技术。</span></li><li><span>扩展效应器官功能的控制与显示技术。</span></li></ul><h4 id='信息技术的主要特征'><span>信息技术的主要特征</span></h4><p><span>现代电子信息技术的主要特征是：以数字技术（计算机）为基础、软件与通信技术为核心、采用电子技术（包括激光技术）进行信息的收集、传递、加工、存储、显示与控制。</span></p><h4 id='信息技术涉及的领域'><span>信息技术涉及的领域</span></h4><p><span>它包括通信、广播、计算机、互联网、微电子、遥感遥测、自动控制、机器人</span><mark><span>等诸多领域</span></mark><span>。</span></p><h3 id='113-信息化与信息社会'><span>1.1.3 信息化与信息社会</span></h3><h4 id='工业革命发展'><span>工业革命发展</span></h4><p><u><span>蒸汽机的发明引发了从英国开始的</span><mark><span>第一次工业革命</span></mark></u><span>，很短的时间内，它就改变了整个世界的面貌。</span></p><p><u><span>发电机和电动机的发明引发了</span><mark><span>第二次工业革命</span></mark></u><span>，它使电气化与工业化有机结合，以美国为代表的工业化国家取得了快速的经济发展。</span></p><p><u><span>从20世纪90年代开始，以互联网为代表的信息技术引发了</span><mark><span>第三次工业革命</span></mark></u><span>，它正以其广泛的渗透性和高度的先进性与传统产业相结合，对传统产业进行改造，极大地提高了传统产业的劳动生产率；信息技术还孕育和催生了包括信息产业在内的许多新兴产业，称为世界范围的新的经济增长点。</span></p><h4 id='信息化'><span>信息化</span></h4><p><mark><span>信息化</span></mark><span>的概念起源于20世纪60年代。</span></p><p><span>所谓信息化，就是利用现代信息技术对人类社会的信息和知识的生产与传播进行全面改造，使人类社会生产体系的组织结构和经济结构发生全面变革的一个过程，是推动人类社会从工业社会向信息社会转变的一个社会转型过程。</span></p><h3 id='复习题'><span>复习题</span></h3><ol start='' ><li><p><strong><span>什么是信息？信息处理包含哪些行为和活动？</span></strong></p><p><span>信息是客观世界中各事物运动状态和变化内容的反映，是认识主体对客观事物状态和变化的感知。</span></p><p><span>信息处理指的是与下列内容相关的行为和活动：</span></p><ul><li><mark><span>信息的收集</span></mark><span>，例如信息的感知、测量、获取、输入等。</span></li><li><mark><span>信息的加工</span></mark><span>，例如分类、计算、分析、综合、转换、检索、管理等。</span></li><li><mark><span>信息的存储</span></mark><span>，例如书写、摄影、录音、录像等。</span></li><li><mark><span>信息的传递</span></mark><span>，例如邮寄、出版、电话、广播电视、短信、微信、博客等。</span></li><li><mark><span>信息的施用</span></mark><span>，例如控制、显示、导航、机器人等。</span></li></ul></li><li><p><strong><span>信息技术包含哪些内容？现代电子信息技术的主要特征有哪些？</span></strong></p><p><span>基本的信息技术包括：</span></p><ul><li><span>扩展感觉器官功能的感测（获取）与识别技术。</span></li><li><span>扩展神经系统功能的通信技术。</span></li><li><span>扩展大脑功能的计算（处理）与存储技术。</span></li><li><span>扩展效应器官功能的控制与显示技术。</span></li></ul><p><span>现代电子信息技术的主要特征是：以数字技术（计算机）为基础、软件与通信技术为核心、采用电子技术（包括激光技术）进行信息的收集、传递、加工、存储、显示与控制。</span></p></li></ol><h2 id='13-微电子技术简介'><span>1.3 微电子技术简介</span></h2><h3 id='131-微电子技术简介'><span>1.3.1 微电子技术简介</span></h3><h4 id='信息技术领域的关键技术'><span>信息技术领域的关键技术</span></h4><p><u><mark><span>微电子技术</span></mark><span>是</span><mark><span>信息技术领域</span></mark><span>中的</span><mark><span>关键技术</span></mark></u><span>，是发展电子信息产业和各项高技术的基础。</span></p><h4 id='微电子技术的核心'><span>微电子技术的核心</span></h4><p><mark><span>微电子技术</span></mark><span>是实现电子电路和电子设备微型化的技术，其</span><mark><span>核心是集成电路芯片（简称芯片）</span></mark><span>。</span></p><h4 id='集成电路的制造'><span>集成电路的制造</span></h4><p><span>集成电路（IC）是20世纪50年代出现的，它以半导体单晶片作为材料，经平面工艺加工制造，将大量晶体管、电阻、电容及连线构成的电子线路集成在基片上，构成一个微型化的电路或系统。</span></p><p><span>现代集成电路使用的半导体材料主要是硅，也可以是化合物半导体入砷化镓等。</span></p><h4 id='规模分类---电子元件数目'><span>规模分类 - 电子元件数目</span></h4><p><u><span>集成电路根据它所包含的电子元件（如晶体管、电阻、电容等）数目可以分为小规模、中规模、大规模、超大规模和极大规模集成电路。</span></u></p><p><mark><span>集成度</span></mark><span>（单个集成电路所包含电子元件的数目）</span><mark><span>小于100</span></mark><span>的集成电路称为</span><mark><span>小规模集成电路（SSI）</span></mark><span>；</span>
+<mark><span>中规模集成电路（MSI）</span></mark><span>的集成度在</span><mark><span>100</span><span>~</span><span>3000个</span></mark><span>电子元件之间；</span>
+<mark><span>大规模集成电路（LSI）</span></mark><span>的集成度在</span><mark><span>3000</span><span>~</span><span>10万</span></mark><span>之间；</span>
+<mark><span>超大规模集成电路（VLSI）</span></mark><span>集成度一般达</span><mark><span>10万</span><span>~</span><span>100万个</span></mark><span>电子元件；</span>
+<mark><span>超过100万个</span></mark><span>电子元件的集成电路称为</span><mark><span>极大规模集成电路（ULSI）</span></mark><span>。</span></p><figure><table><thead><tr><th><span>规模</span></th><th><span>英文</span></th><th><span>电子元件集成度</span></th></tr></thead><tbody><tr><td><span>小规模集成电路</span></td><td><span>SSI（Small）</span></td><td><span>小于100</span></td></tr><tr><td><span>中规模集成电路</span></td><td><span>MSI（Medium）</span></td><td><span>100到3000个</span></td></tr><tr><td><span>大规模集成电路</span></td><td><span>LSI（Large）</span></td><td><span>3000到10万个</span></td></tr><tr><td><span>超大规模集成电路</span></td><td><span>VLSI（Very Large）</span></td><td><span>10万到100万个</span></td></tr><tr><td><span>极大规模集成电路</span></td><td><span>ULSI（Ultra Large）</span></td><td><span>超过100万个</span></td></tr></tbody></table></figure><p><span>通常并不严格区分VLSI和ULSI，而是统称为VLSI。</span></p><h4 id='集成对象'><span>集成对象</span></h4><p><span>中、小规模集成电路一般以简单的门电路或单极放大器为集成对象，</span>
+<span>大规模集成电路则以功能部件、子系统为集成对象。</span></p><h4 id='数字设备使用的芯片'><span>数字设备使用的芯片</span></h4><p><span>现在计算机、手机、数码相机等电子设备中使用的微处理器、存储器、图形加速芯片等都是采用</span><strong><span>超大规模和极大规模集成电路</span></strong><span>。</span></p><h4 id='根据结构电路和工艺分类'><span>根据结构、电路和工艺分类</span></h4><p><span>集成电路按照所用的晶体管结构、电路和公艺的不同，主要分为双极型集成电路、金属氧化物半导体（MOS）集成电路、双极-金属氧化物半导体集成电路等几类。</span></p><h4 id='按集成电路的功能分类'><span>按集成电路的功能分类</span></h4><p><span>按集成电路的功能来分，可分为</span><mark><span>数字集成电路</span></mark><span>（如门电路、存储器、微处理器、微控制器、数字信号处理器等）和</span><mark><span>模拟集成电路</span></mark><span>（如传感器、信号放大器、功率放大器等）和</span><mark><span>数/模混合集成电路</span></mark><span>。</span></p><h4 id='按用途分类'><span>按用途分类</span></h4><p><span>按它们的用途可分为</span><mark><span>通用集成电路</span></mark><span>与</span><mark><span>专用集成电路</span></mark><span>（ASIC），</span><u><span>微处理器和存储器芯片等都属于通用集成电路</span></u><span>，而专用集成电路是按照某种应用的特定要求专门设计、定制的集成电路。</span></p><h3 id='133-集成电路的发展趋势'><span>1.3.3 集成电路的发展趋势</span></h3><h4 id='集成电路的特点'><span>集成电路的特点</span></h4><p><span>集成电路的特点是体积小、功耗低、速度快、可靠性高。</span></p><h4 id='集成电路的工作速度'><span>集成电路的工作速度</span></h4><p><span>集成电路的工作速度主要取决于组成逻辑门电路的晶体管的尺寸。晶体管尺寸越小，其工作频率越高，门电路的开关速度就越快。</span></p><h4 id='摩尔定律'><span>摩尔定律</span></h4><p><span>Intel公司的创始人之一摩尔（G.E. Moore）1965年在美国《电子学》杂志上曾发表论文预测，</span><u><span>单块集成电路的集成度平均每18</span><span>~</span><span>24个月翻一番，这就是有名的Moore定律</span></u><span>。</span></p><h4 id='集成电路生产技术'><span>集成电路生产技术</span></h4><p><span>现在，世界上</span><u><span>集成电路</span></u><span>批量生产的</span><u><span>先进技术</span></u><span>已经达到</span><u><span>12</span><span>~</span><span>14英寸</span></u><mark><span>晶圆</span></mark><span>、</span><u><span>7nm和5nm</span></u><mark><span>线宽</span></mark><span>的</span><u><span>工艺水平</span></u><span>，并还在进一步提高。</span></p><h3 id='134-ic卡'><span>1.3.4 IC卡</span></h3><h4 id='什么是ic卡'><span>什么是IC卡</span></h4><p><u><span>IC卡是“集成电路卡”或“芯片卡”的简称</span></u><span>，国外称为chip card或smart card。</span></p><p><u><span>它把集成电路芯片密封在塑料卡基片内部，使其成为能存储、处理和传递数据的载体。</span></u></p><h4 id='ic卡分类'><span>IC卡分类</span></h4><p><span>IC卡按卡中</span><mark><span>所镶嵌的集成电路芯片</span></mark><span>可分为两大类：</span></p><ol start='' ><li><span>存储器卡</span></li><li><span>CPU卡，也称智能卡</span></li></ol><p><span>手机中使用的SIM卡就是一种CPU卡，...</span></p><h4 id='ic卡使用方式'><span>IC卡使用方式</span></h4><p><span>IC卡按</span><mark><span>使用方式</span></mark><span>可分为两种（参考图1-9）：</span></p><ol start='' ><li><u><span>接触式IC卡（如手机SIM卡）</span></u><span>，其表面有一个方型镀金接口，共有8个或6个镀金触点。</span></li><li><u><span>非接触式IC卡，又叫射频卡、感应卡</span></u><span>，它采用电磁感应方式无线传输数据，解决了无源（</span><u><span>卡中无电源</span></u><span>）和免接触等难题，操作方便、快捷。</span></li><li><u><span>当前还流行一种兼有接触式和非接触式两种刷卡方式的“双界面卡”</span></u><span>，使用更为方便。</span></li></ol><p>&nbsp;</p></div></div>
+</body>
+</html>

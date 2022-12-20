@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>早</title>
+	</head>
+
+	<body style="background-color: #333; width: 100vw; height: 100vh;">
+		<div style="margin: 0 auto; display: table;">
+			<!-- <canvas id="cvs" width="500" height="500" style="border: 1px solid #ddd;"></canvas> -->
+			<canvas id="cvs" width="500" height="500"></canvas>
+		</div>
+		<script>
+		function zao(context) {
+			// |
+			context.beginPath();
+			context.moveTo(120, 80);
+			context.lineTo(120, 240);
+			context.stroke();
+			context.closePath();
+			// -
+			context.beginPath();
+			context.moveTo(120, 80);
+			context.lineTo(380, 80);
+			context.stroke();
+			context.closePath();
+			// |
+			context.beginPath();
+			context.moveTo(380, 80);
+			context.lineTo(380, 240);
+			context.stroke();
+			context.closePath();
+			// -
+			context.beginPath();
+			context.moveTo(120, 160);
+			context.lineTo(380, 160);
+			context.stroke();
+			context.closePath();
+			// -
+			context.beginPath();
+			context.moveTo(120, 240);
+			context.lineTo(380, 240);
+			context.stroke();
+			context.closePath();
+			// -
+			context.beginPath();
+			context.moveTo(50, 320);
+			context.lineTo(450, 320);
+			context.stroke();
+			context.closePath();
+			// |
+			context.beginPath();
+			context.moveTo(250, 240);
+			context.lineTo(250, 450);
+			context.stroke();
+			context.closePath();
+			// location data
+			context.textAlign = 'left';
+			context.fillText("(380, 160)", 385, 163);
+			context.textAlign = 'right';
+			context.fillText("(120, 160)", 115, 163);
+			context.textAlign = 'center';
+			context.fillText("(120, 80)", 120, 75);
+			context.fillText("(120, 240)", 120, 255);
+			context.fillText("(380, 80)", 380, 75);
+			context.fillText("(380, 240)", 380, 255);
+			context.fillText("(250, 240)", 250, 235);
+			context.fillText("(250, 450)", 250, 460);
+			context.fillText("(50, 320)", 50, 315);
+			context.fillText("(450, 320)", 450, 315);
+		}
+		let canvas = document.getElementById('cvs');
+		let context = canvas.getContext('2d');
+		zao(context);
+		
+		function randint(a, b) {
+			return Math.floor(Math.random()*1000000%Math.abs(b-a+1)+a)
+		}
+		
+		function randloc() {
+			switch (randint(0, 6)) {
+				case 0: return {x: 120, y: randint(80, 240)};
+				case 1: return {x: randint(120, 380), y: 80};
+				case 2: return {x: 380, y: randint(80, 240)};
+				case 3: return {x: randint(120, 380), y: 160};
+				case 4: return {x: randint(120, 380), y: 240};
+				case 5: return {x: randint(50, 450), y: 320};
+				case 6: return {x: 250, y: randint(250, 450)};
+			}
+		}
+		
+		class Sun {
+			draw() {
+				if (this.initData.r > 0) {
+					this.context.beginPath();
+					this.context.arc(
+						this.initData.x, 
+						this.initData.y, 
+						this.initData.r, 0, 2*Math.PI);
+					this.context.fillStyle = this.initData.color;
+					// console.log(this.initData.color)
+					// console.log(this.context.fillStyle)
+					this.context.fill();
+					this.context.closePath();
+					return this;
+				}
+			}
+			update() {
+				this.initData.x+=this.varData.x;
+				this.initData.y+=this.varData.y;
+				this.initData.r+=this.varData.r;
+				if (this.initData.r > 0)
+					return this;
+			}
+			constructor(context) {
+			    this.context = context
+				this.initData = {
+					...randloc(), 
+					r: randint(1, 20), 
+					color: `rgb(${Math.random()*800+9}, ${Math.random()*600+9}, 100)`
+					// color: `rgb(${Math.random()*240+9}, ${Math.random()*240+9}, 203)`
+				}
+				// console.log(this.initData)
+				this.varData = {
+					x: randint(-3, 3), 
+					y: randint(-3, 3), 
+					r: randint(-3, -1), 
+				}
+			}
+		}
+		
+		sunsStack = []
+		setInterval(() => {
+			context.clearRect(0, 0, 500, 500);
+			// zao(context);
+			sunsStack.forEach((i, k)=>{
+				if (!i.draw().update()) {
+					// sunsStack = sunsStack.clice
+					sunsStack.splice(k, 1)
+				}
+			})
+			for(let i=0; i<50; i++)
+				sunsStack.push(new Sun(context))
+		}, 30)
+		
+		// let sun = new Sun(context)
+		// let interval = setInterval(()=>{
+		// 	context.clearRect(0, 0, 500, 500);
+		// 	zao(context);
+		// 	if (
+		// 		!sun.draw()
+		// 		   .update()) {
+		// 			   clearInterval(interval);
+		// 		   }
+		// }, 50)
+		
+		// new Sun(context).draw()
+		
+		console.log(randint(1, 19))
+		</script>
+	</body>
+
+</html>

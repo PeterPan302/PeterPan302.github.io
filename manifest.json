@@ -17,8 +17,11 @@
     "background_color": "#efefef",
     "start_url": "/",
     "display": "standalone",
-    "display0": "minimal-ui",
-    "theme_color": "#3367d6",
+    "theme_color": "#ffffff",
+    "backup_attrs": {
+        "display": "minimal-ui",
+        "theme_color": "#3367d6"
+    },
     "share_target": {
         "method":"GET",
         "action": "/?share_target",
